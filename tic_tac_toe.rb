@@ -52,9 +52,8 @@ class TicTacToe
     end
 
     def check_game()
-        if !@board.include?(0 || 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9)
-            @result = "tie"
-        elsif (@board[1] == 'O' && @board[2] == 'O' && @board[3] == 'O') || \
+        
+        if (@board[1] == 'O' && @board[2] == 'O' && @board[3] == 'O') || \
             (@board[4] == 'O' && @board[5] == 'O' && @board[6] == 'O') || \
             (@board[7] == 'O' && @board[8] == 'O' && @board[9] == 'O') || \
             (@board[1] == 'O' && @board[4] == 'O' && @board[7] == 'O') || \
@@ -78,9 +77,19 @@ class TicTacToe
 
     def play_game()
         self.printboard()
+        count = 0
         while @result == "continue"
             self.play_p1()
+            count += 1
+            if count == 9
+                @result = "The game has tied."
+                break
+            end
+            if @result != "continue"
+                break
+            end
             self.play_p2()
+            count += 1
         end
         p @result
     end
